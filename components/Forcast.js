@@ -1,4 +1,3 @@
-import {base, key} from '@/pages/api/apikey';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ReactAnimatedWeather from 'react-animated-weather'
@@ -7,6 +6,10 @@ const Forcast = ({main}) => {
   const [query, setquery] = useState('');
   const [error, setError] = useState('');
   const [weather, setWeather] = useState(null);
+
+  const key = process.env.NEXT_PUBLIC_API_KEY;
+  const base = process.env.NEXT_PUBLIC_BASE_URL;
+
   const handleChange = (setState) => (e) => {
     setState(e.target.value)
   }

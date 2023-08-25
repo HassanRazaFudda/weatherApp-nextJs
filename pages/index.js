@@ -1,12 +1,12 @@
-import React from "react";
-import CurrentLocation from "@/components/currentLocation";
+import React, { useEffect } from "react";
+import Weather from "@/components/Weather";
 
 
 export default function Home() {
   return (
       <React.Fragment>
       <div className="container">
-        <CurrentLocation />
+        <Weather />
       </div>
       </React.Fragment>
   )

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { base, key } from "@/pages/api/apikey";
 import Clock from "react-live-clock";
 import Forcast from "./Forcast";
 import Loader from "../public/images/WeatherIcons.gif";
-import ReactAnimatedWeather from "react-animated-weather";
 import Image from "next/image";
 import axios from 'axios';
 
@@ -39,25 +37,18 @@ const dateBuilder = (d) => {
 
   return `${day}, ${date} ${month} ${year}`;
 };
-
-
 const defaults = {
   color: "white",
   size: 112,
   animate: true,
 };
-
-
-
-
-
-
 const Weather = () => {
   
   const [weather, setWeather] = useState(null);
   const [isClient, setIsClient] = useState(false);
   
-  
+  const key = process.env.NEXT_PUBLIC_API_KEY;
+  const base = process.env.NEXT_PUBLIC_BASE_URL;
 
 
   useEffect(() => {
@@ -79,26 +70,12 @@ const Weather = () => {
     await axios.get(uri)
     .then((res)=> {
       setWeather(res?.data);
-      console.log(res?.data);
     })
     .catch((err) => {
       console.log(err, uri)
       setWeather(null)
     })
   };
-
-  
-
-  
- 
-
-
-
-
-
-
-
-
   return (
     <>
       {weather? (
@@ -130,7 +107,7 @@ const Weather = () => {
         </>
       ) : (
         <React.Fragment>
-          <Image src={Loader} style={{ width: "50%", WebkitUserDrag: "none" }} layout="intrinsic" />
+          <Image src={Loader} style={{ width: "50%", WebkitUserDrag: "none", }} layout='intrinsic' />
           <h3 style={{ color: "white", fontSize: "22px", fontWeight: "600" }}>
             Detecting your location
           </h3>
@@ -144,7 +121,6 @@ const Weather = () => {
 
   )
 }
-
 export default Weather;
 
 
